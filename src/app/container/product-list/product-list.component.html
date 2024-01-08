@@ -1,0 +1,25 @@
+<app-filter 
+   [all]="totalProductCount" 
+   [inStock]="totalProductInStock" 
+   [outOfstock]="totalProductOutOfStock"
+   (selectedFilterRadioButtonChanged)="onFilterChanged($event)"
+   ></app-filter>
+   
+<div class="ekart--products--container">
+   <ng-container *ngFor="let prod of products">
+      <app-product [product]="prod"
+                   *ngIf="searchText==='' || prod.name.toLowerCase().includes(searchText)"
+                   (click)="selectedProduct = prod"></app-product>
+   </ng-container>
+   
+   <!-- <div *ngFor="let prod of products" (click)="selectedProduct = prod">
+
+      *ngIf="selectedFilterRadioButton === 'all'  || prod.is_in_inventory.toString() === selectedFilterRadioButton "
+
+      product-list是父組件，app-product是子組件，  父組件傳值給子組件
+      <app-product  [product]="prod" *ngIf="searchText==='' || prod.name.toLowerCase().includes(searchText)"></app-product>   
+    
+      
+   </div> -->
+   
+</div>
